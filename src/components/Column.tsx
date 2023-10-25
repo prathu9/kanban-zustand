@@ -13,13 +13,13 @@ const Column = ({state}: ColumnProps) => {
     // React way to filter without unecessary rerendering
     const filteredTasks = useMemo(() => tasks.filter(task => task.state === state), [tasks, state])
 
-    console.log(tasks, filteredTasks)
-
+    const addTask = useStore(store => store.addTask);
+console.log(state)
     return(
         <div className="column">
             <div className="titleWrapper">
                 <p>{state}</p>
-                <button>Add</button>
+                <button onClick={() => {addTask('asdsa'+state, state)}}>Add</button>
             </div>
             {filteredTasks.map((task) => (
                 <Task title={task.title} key={task.title}/>
