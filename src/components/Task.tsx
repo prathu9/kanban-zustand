@@ -1,19 +1,20 @@
 import classNames from "classnames"
 import "./Task.css"
+import { useStore } from "../store"
 
 type TaskProps = {
     title: string
 }
 
-const STATUS = 'PLANNED'
+const Task = ({title}: TaskProps) =>{   
+    const task = useStore(store => store.tasks.find(task => task.title === title));
 
-const Task = ({title}: TaskProps) =>{
     return (
         <div className="task">
-            <div>{title}</div>
+            <div>{task!.title}</div>
             <div className="bottomWrapper">
                 <div></div>
-                <div className={classNames('status',STATUS)}>{STATUS}</div>
+                <div className={classNames('status',task!.state)}>{task!.state}</div>
             </div>
         </div>
     )
