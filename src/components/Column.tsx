@@ -2,6 +2,7 @@ import Task from "./Task";
 import { useMemo, useState } from "react";
 import "./Column.css";
 import { useStore } from "../store";
+import classNames from "classnames"
 
 type ColumnProps = {
   state: string;
@@ -10,6 +11,7 @@ type ColumnProps = {
 const Column = ({ state }: ColumnProps) => {
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
+  const [drop, setDrop] = useState(false);
 
   const tasks = useStore((store) => store.tasks);
 
@@ -25,14 +27,20 @@ const Column = ({ state }: ColumnProps) => {
   const moveTask = useStore((store) => store.moveTask);
 
   return (
-    <div className="column"
+    <div className={classNames("column", {drop: drop})}
         onDragOver={(e) => {
             e.preventDefault();
+            setDrop(true);
+        }}
+        onDragLeave={(e) => {
+            e.preventDefault();
+            setDrop(false);
         }}
         onDrop={() => {
             if(draggedTask !== null){
                 moveTask(draggedTask, state);
             }
+            setDrop(false);
             setDraggedTask(null);
         }}
     >
