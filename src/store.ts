@@ -23,4 +23,13 @@ const store = (set: any) => ({
     }), false, "moveTask")
 });
 
+// const log = (config) => (set, get, api) => config(
+//     (...args) => (
+//         console.log(args);
+//         set(...args);
+//     ),
+//     get, 
+//     api
+// );
+
 export const useStore = create(persist(devtools(store), {name: "store"}));
