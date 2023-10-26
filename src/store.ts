@@ -7,7 +7,7 @@ type Task = {
 }
 
 const store = (set: any) => ({
-    tasks: [{title: 'TestTask', state: 'ONGOING'}],
+    tasks: [],
     draggedTask: null,
     addTask: (title: string, state: string) => set((store: any) => ({tasks: [...store.tasks, {title, state}]}), false, "addTask"),
     deleteTask: (title: string) => set((store: any) => (
