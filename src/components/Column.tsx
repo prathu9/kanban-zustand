@@ -20,6 +20,8 @@ const Column = ({ state }: ColumnProps) => {
   );
 
   const addTask = useStore((store) => store.addTask);
+  const draggedTask = useStore((store) => store.draggedTask);
+  const setDraggedTask = useStore((store) => store.setDraggedTask);
 
   return (
     <div className="column"
@@ -27,7 +29,8 @@ const Column = ({ state }: ColumnProps) => {
             e.preventDefault();
         }}
         onDrop={(e) => {
-            console.log("drop")
+            console.log(draggedTask)
+            setDraggedTask(null);
         }}
     >
       <div className="titleWrapper">

@@ -17,8 +17,10 @@ const Task = ({title}: TaskProps) =>{
 
     const deleteTask = useStore(store => store.deleteTask);
 
+    const setDraggedTask = useStore(store => store.setDraggedTask)
+
     return (
-        <div className="task" draggable>
+        <div className="task" draggable onDragStart={() => setDraggedTask(task.title)}>
             <div>{task!.title}</div>
             <div className="bottomWrapper">
                 <div className="deleteIconWrapper">
