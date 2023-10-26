@@ -7,17 +7,24 @@ type TaskProps = {
     title: string
 }
 
+type Task = {
+    title: string,
+    state: string
+}
+
 const Task = ({title}: TaskProps) =>{   
-    const task = useStore(store => store.tasks.find(task => task.title === title));
+    const task = useStore(store => store.tasks.find(task => task.title === title)) as Task;
+
+    const deleteTask = useStore(store => store.deleteTask);
 
     return (
-        <div className="task">
+        <div className="task" draggable>
             <div>{task!.title}</div>
             <div className="bottomWrapper">
                 <div className="deleteIconWrapper">
-                    <BsFillTrash3Fill onClick={() => console.log("check")}/>
+                    <BsFillTrash3Fill onClick={() => deleteTask(task.title)}/>
                 </div>
-                <div className={classNames('status',task!.state)}>{task!.state}</div>
+                <div className={classNames('status',task.state)}>{task.state}</div>
             </div>
         </div>
     )

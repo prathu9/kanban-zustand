@@ -22,7 +22,14 @@ const Column = ({ state }: ColumnProps) => {
   const addTask = useStore((store) => store.addTask);
 
   return (
-    <div className="column">
+    <div className="column"
+        onDragOver={(e) => {
+            e.preventDefault();
+        }}
+        onDrop={(e) => {
+            console.log("drop")
+        }}
+    >
       <div className="titleWrapper">
         <p>{state}</p>
         <button onClick={() => setOpen(true)}>Add</button>
