@@ -22,14 +22,17 @@ const Column = ({ state }: ColumnProps) => {
   const addTask = useStore((store) => store.addTask);
   const draggedTask = useStore((store) => store.draggedTask);
   const setDraggedTask = useStore((store) => store.setDraggedTask);
+  const moveTask = useStore((store) => store.moveTask);
 
   return (
     <div className="column"
         onDragOver={(e) => {
             e.preventDefault();
         }}
-        onDrop={(e) => {
-            console.log(draggedTask)
+        onDrop={() => {
+            if(draggedTask !== null){
+                moveTask(draggedTask, state);
+            }
             setDraggedTask(null);
         }}
     >

@@ -14,7 +14,12 @@ const store = (set: any) => ({
             tasks: store.tasks.filter((task: Task) => task.title !== title)
         }
     )),
-    setDraggedTask: (title: string|null) => set({draggedTask: title})  
+    setDraggedTask: (title: string|null) => set({draggedTask: title}),
+    moveTask: (title: string, state: string) => set((store: any) => ({
+        tasks: store.tasks.map((task: Task) => task.title === title? {
+            title, state
+        }: task)
+    }))
 });
 
 export const useStore = create(store);
