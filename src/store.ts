@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import {devtools} from "zustand/middleware";
+import {devtools, persist} from "zustand/middleware";
 
 type Task = {
     title: string,
@@ -23,4 +23,4 @@ const store = (set: any) => ({
     }), false, "moveTask")
 });
 
-export const useStore = create(devtools(store));
+export const useStore = create(persist(devtools(store), {name: "store"}));
