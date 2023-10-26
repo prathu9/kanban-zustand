@@ -24,10 +24,10 @@ const store = (set: any) => ({
 });
 
 // const log = (config) => (set, get, api) => config(
-//     (...args) => (
-//         console.log(args);
+//     (...args) => {
+//         console.log(args)
 //         set(...args);
-//     ),
+//     },
 //     get, 
 //     api
 // );
