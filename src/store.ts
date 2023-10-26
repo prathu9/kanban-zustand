@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import {devtools} from "zustand/middleware";
 
 type Task = {
     title: string,
@@ -22,4 +23,4 @@ const store = (set: any) => ({
     }))
 });
 
-export const useStore = create(store);
+export const useStore = create(devtools(store));
